@@ -78,12 +78,6 @@ def main(Rx, Ry):
   Vxbola = [1.5] # Velocidade da bola em X 
   Vybola = [1] # Velocidade da bola em Y
 
-  Axbola = [1.5] # Aceleração da bola em X
-  Aybola = [1] # Aceleração da bola em Y
-
-  Dx = [] # Distância S do robô em X | (S = So + vt)
-  Dy = [] # Distância S do robô em Y | (S = So + vt)
-
   Vi = [] # Velocidade instantânea da bola
 
   vir = []
@@ -97,27 +91,22 @@ def main(Rx, Ry):
 
   t = [] # Tempo do alcance do robô na bola
   Dt = [] # Diferenca dos tempos
-  Dfuture = []
+  Dfuture = [] # Distancia futura entre o robô e bola
 
-  framelist = []
+  framelist = [] # Array de cada frame simulado
 
-  dist_data = [] # teste
-  Robo_data = []
-  Bola_data = []
-
-  Posx = []
-  Posy = []
+  Posx = [] # Posição dinâmica do robô em x
+  Posy = [] # Posição dinâmica do robô em y
 
   distanciacertaconfia = []
 
-  distanciaX = []
-  distanciaY = []
+  distanciaX = [] # Distância dinâmica entre o robô e a bola em X
+  distanciaY = [] # Distância dinâmica entre o robô e a bola em Y
 
   acc = []
   # [Variáveis] 
 
   # Bola
-  vob = 0.09 # Velocidade inicial da bola
   vox = 0.05 # Velocidade inicial da bola em X
   voy = 0.04 # Velocidade inicial da bola em Y
   aceleracao_bola = 0.06 # Aceleração da bola
@@ -125,9 +114,6 @@ def main(Rx, Ry):
   # Robô
   v = 0 # Velocidade inicial do robô
   a = 0 #  Aceleração inicial do robô
-
-  y = 0.0303*x**2 + 0.0878*x + 1.0275
-  Cofa = tan(0.0303)
 
   for i in range(0, (len(arq)-1)):
     if(i < len(arq)-futuro):
@@ -163,8 +149,7 @@ def main(Rx, Ry):
     final_inicial.append(sqrt(((coordxlist[i+1]-coordxlist[i])*((coordxlist[i+1]-coordxlist[i])) + (coordylist[i+1]-coordylist[i])*(coordylist[i+1]-coordylist[i]))))
     
     aBola.append(2*(D[i] - v * templist[i])/templist[i]*templist[i]) 
-    # Calcular a aceleração X e Y da bola
-    bolaacc = final_inicial[i]/0.02
+    
     Vi.append(aBola[i]*templist[i])
 
     if(i <= 430):
